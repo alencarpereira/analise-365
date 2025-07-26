@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Calculadora de Odds e Sugestões</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+
+<body>
+    <main class="container">
+        <h1>Calculadora de Odds e Sugestões</h1>
+
+        <section>
+            <h2>Valor da Banca</h2>
+            <label for="valorBanca">Informe sua banca (R$):</label>
+            <input type="number" id="valorBanca" step="0.01" min="1" />
+        </section>
+
+
+        <section>
+            <h2>Resultado 1X2 + Empate Anula</h2>
+            <label for="oddVitoriaA">Vitória Time A:</label>
+            <input type="number" id="oddVitoriaA" step="0.01" min="1" />
+
+            <label for="oddEmpate">Empate:</label>
+            <input type="number" id="oddEmpate" step="0.01" min="1" />
+
+            <label for="oddEmpateAnulaA">Empate Anula - Time A:</label>
+            <input type="number" id="oddEmpateAnulaA" step="0.01" min="1" />
+
+            <label for="oddEmpateAnulaB">Empate Anula - Time B:</label>
+            <input type="number" id="oddEmpateAnulaB" step="0.01" min="1" />
+
+            <label for="oddVitoriaB">Vitória Time B:</label>
+            <input type="number" id="oddVitoriaB" step="0.01" min="1" />
+        </section>
+
+        <section>
+            <h2>Dupla Hipótese (Odds)</h2>
+
+            <label for="oddDuplaAEmpate">Time A ou Empate:</label>
+            <input type="number" id="oddDuplaAEmpate" step="0.01" min="1" placeholder="Ex: 1.20" />
+
+            <label for="oddDuplaEmpateB">Empate ou Time B:</label>
+            <input type="number" id="oddDuplaEmpateB" step="0.01" min="1" placeholder="Ex: 1.30" />
+
+            <label for="oddDuplaAB">Time A ou Time B:</label>
+            <input type="number" id="oddDuplaAB" step="0.01" min="1" placeholder="Ex: 1.50" />
+        </section>
+
+
+        <section>
+            <h2>Mercado de Gols</h2>
+            <label for="oddOver15">Over 1.5 Gols:</label>
+            <input type="number" id="oddOver15" step="0.01" min="1" />
+
+            <label for="oddUnder25">Under 2.5 Gols:</label>
+            <input type="number" id="oddUnder25" step="0.01" min="1" />
+        </section>
+
+        <section>
+            <h2>Ambos Marcam</h2>
+            <label for="oddAmbosSim">Ambos Marcam - Sim:</label>
+            <input type="number" id="oddAmbosSim" step="0.01" min="1" />
+
+            <label for="oddAmbosNao">Ambos Marcam - Não:</label>
+            <input type="number" id="oddAmbosNao" step="0.01" min="1" />
+        </section>
+
+        <section>
+            <h2>Escanteios</h2>
+            <label for="oddEscanteiosMais">Mais de (Escanteios):</label>
+            <input type="number" id="oddEscanteiosMais" step="0.01" min="1" />
+
+            <label for="oddEscanteiosExato">Exatamente (Escanteios):</label>
+            <input type="number" id="oddEscanteiosExato" step="0.01" min="1" />
+
+            <label for="oddEscanteiosMenos">Menos de (Escanteios):</label>
+            <input type="number" id="oddEscanteiosMenos" step="0.01" min="1" />
+        </section>
+
+        <section>
+            <h2>Cartões</h2>
+            <label for="oddCartoesSim">Cartões para ambos os times - Sim:</label>
+            <input type="number" id="oddCartoesSim" step="0.01" min="1" />
+
+            <label for="oddCartoesNao">Cartões para ambos os times - Não:</label>
+            <input type="number" id="oddCartoesNao" step="0.01" min="1" />
+        </section>
+
+
+        <div class="botoes">
+            <button onclick="gerarSugestoes()">Gerar Sugestões</button>
+            <button onclick="limparCampos()" class="limpar">Limpar</button>
+            <button onclick="preencherAutomatico()">Preencher Automático</button>
+        </div>
+
+        <section id="resultado"></section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
+
+<!-- apagar ate aqui -->

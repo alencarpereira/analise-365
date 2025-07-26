@@ -1,0 +1,131 @@
+/* styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f9fafb;
+    margin: 0;
+    padding: 2rem;
+    color: #333;
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 2rem 3rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #0057b8;
+}
+
+section {
+    margin-bottom: 2rem;
+}
+
+h2 {
+    border-bottom: 2px solid #0057b8;
+    padding-bottom: 0.3rem;
+    margin-bottom: 1rem;
+    color: #004080;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.3rem;
+    font-weight: 600;
+}
+
+input[type="number"] {
+    width: 100%;
+    padding: 0.5rem;
+    border: 1.8px solid #ccc;
+    border-radius: 6px;
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input[type="number"]:focus {
+    border-color: #0057b8;
+    outline: none;
+}
+
+.botoes {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+.botoes button {
+    flex: 1;
+}
+
+button {
+    display: block;
+    width: 100%;
+    padding: 1rem 0;
+    background-color: #0057b8;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #003f7d;
+}
+
+button.limpar {
+    background-color: #ccc;
+    color: #000;
+    border: 1px solid #aaa;
+}
+
+#resultado {
+    background-color: #e7f0ff;
+    border: 1px solid #0057b8;
+    padding: 1.5rem;
+    border-radius: 8px;
+    font-size: 1.05rem;
+    line-height: 1.4;
+    color: #003366;
+}
+
+.valor-aposta {
+    display: inline-block;
+    margin-top: 4px;
+    font-weight: bold;
+    color: #2d6a4f;
+}
+
+.sugestao.dupla {
+    background-color: #fff8e1;
+    border-left: 5px solid #ffb300;
+    padding: 0.8rem 1rem;
+    margin-bottom: 1rem;
+    border-radius: 6px;
+    font-weight: 600;
+    color: #7c4700;
+}
+
+@media (max-width: 480px) {
+    .container {
+        padding: 1rem 1.5rem;
+    }
+
+    .botoes {
+        flex-direction: column;
+    }
+
+    .botoes button {
+        width: 100%;
+    }
+}
