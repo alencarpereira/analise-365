@@ -39,8 +39,8 @@ function gerarSugestoes() {
     // Avaliação odds 1X2 (mercado excluído se existir dupla hipótese na aposta)
     avaliarOdd("Vitória Time A", parseFloat(document.getElementById('oddVitoriaA').value), false, true);
     avaliarOdd("Empate", parseFloat(document.getElementById('oddEmpate').value), false, true);
-    avaliarOdd("Empate Anula A", parseFloat(document.getElementById('oddEmpateAnulaA').value));
-    avaliarOdd("Empate Anula B", parseFloat(document.getElementById('oddEmpateAnulaB').value));
+    avaliarOdd("Empate Anula A", parseFloat(document.getElementById('oddEmpateAnulaA').value), false, true); // Corrigido aqui
+    avaliarOdd("Empate Anula B", parseFloat(document.getElementById('oddEmpateAnulaB').value), false, true); // Corrigido aqui
     avaliarOdd("Vitória Time B", parseFloat(document.getElementById('oddVitoriaB').value), false, true);
 
     avaliarOdd("Over 1.5 Gols", parseFloat(document.getElementById('oddOver15').value));
