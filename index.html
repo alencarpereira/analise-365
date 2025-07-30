@@ -12,12 +12,18 @@
     <main class="container">
         <h1>Calculadora de Odds e Sugestões</h1>
 
+        <!-- NOVO: Seletor de jogo -->
+        <select id="seletorJogo" onchange="onJogoChange()">
+            <option value="">Selecione um jogo</option>
+            <option value="jogo1">Time A x Time B (Jogo 1)</option>
+            <option value="jogo2">Time C x Time D (Jogo 2)</option>
+        </select>
+
         <section>
             <h2>Valor da Banca</h2>
             <label for="valorBanca">Informe sua banca (R$):</label>
             <input type="number" id="valorBanca" step="0.01" min="1" />
         </section>
-
 
         <section>
             <h2>Resultado 1X2 + Empate Anula</h2>
@@ -39,7 +45,6 @@
 
         <section>
             <h2>Dupla Hipótese (Odds)</h2>
-
             <label for="oddDuplaAEmpate">Time A ou Empate:</label>
             <input type="number" id="oddDuplaAEmpate" step="0.01" min="1" placeholder="Ex: 1.20" />
 
@@ -49,7 +54,6 @@
             <label for="oddDuplaAB">Time A ou Time B:</label>
             <input type="number" id="oddDuplaAB" step="0.01" min="1" placeholder="Ex: 1.50" />
         </section>
-
 
         <section>
             <h2>Mercado de Gols</h2>
@@ -90,11 +94,30 @@
             <input type="number" id="oddCartoesNao" step="0.01" min="1" />
         </section>
 
+        <!-- Dados ocultos para médias -->
+        <input type="hidden" id="mediaGolsMarcadosTimeA">
+        <input type="hidden" id="mediaGolsSofridosTimeA">
+        <input type="hidden" id="mediaGolsMarcadosTimeB">
+        <input type="hidden" id="mediaGolsSofridosTimeB">
+
+        <h3>Médias dos Times</h3>
+        <div id="exibicaoMedias" class="box-medias">
+            <p><strong>Time A:</strong></p>
+            <p>Gols Marcados: <span id="exibeGolsMarcadosA">-</span></p>
+            <p>Gols Sofridos: <span id="exibeGolsSofridosA">-</span></p>
+
+            <p><strong>Time B:</strong></p>
+            <p>Gols Marcados: <span id="exibeGolsMarcadosB">-</span></p>
+            <p>Gols Sofridos: <span id="exibeGolsSofridosB">-</span></p>
+        </div>
+
+
 
         <div class="botoes">
-            <button onclick="gerarSugestoes()">Gerar Sugestões</button>
-            <button onclick="limparCampos()" class="limpar">Limpar</button>
-            <button onclick="preencherAutomatico()">Preencher Automático</button>
+            <button type="button" onclick="atualizarMediasPorOdds(); gerarSugestoes();">Gerar Sugestões</button>
+            <button type="button" onclick="limparCampos()" class="limpar">Limpar</button>
+            <button type="button" onclick="preencherAutomatico()">Preencher Automático</button>
+
         </div>
 
         <section id="resultado"></section>
@@ -104,5 +127,6 @@
 </body>
 
 </html>
+
 
 <!-- apagar ate aqui -->

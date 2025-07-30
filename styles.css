@@ -55,6 +55,19 @@ input[type="number"]:focus {
     outline: none;
 }
 
+.box-medias {
+    border: 1px solid #ccc;
+    padding: 1rem;
+    margin-top: 1rem;
+    border-radius: 8px;
+    background-color: #f8f8f8;
+}
+
+.box-medias p {
+    margin: 4px 0;
+}
+
+
 .botoes {
     display: flex;
     gap: 10px;
