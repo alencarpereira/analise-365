@@ -75,13 +75,16 @@
 
         <section>
             <h2>Escanteios</h2>
-            <label for="oddEscanteiosMais">Mais de (Escanteios):</label>
+            <label for="escanteiosAlvo">Mais de quantos escanteios?</label>
+            <input type="number" id="escanteiosAlvo" min="1" step="1" placeholder="Ex: 5" />
+
+            <label for="oddEscanteiosMais">Odd - Mais de X escanteios:</label>
             <input type="number" id="oddEscanteiosMais" step="0.01" min="1" />
 
-            <label for="oddEscanteiosExato">Exatamente (Escanteios):</label>
+            <label for="oddEscanteiosExato">Odd - Exatamente X escanteios:</label>
             <input type="number" id="oddEscanteiosExato" step="0.01" min="1" />
 
-            <label for="oddEscanteiosMenos">Menos de (Escanteios):</label>
+            <label for="oddEscanteiosMenos">Odd - Menos de X escanteios:</label>
             <input type="number" id="oddEscanteiosMenos" step="0.01" min="1" />
         </section>
 
@@ -95,10 +98,10 @@
         </section>
 
         <!-- Dados ocultos para médias -->
-        <input type="hidden" id="mediaGolsMarcadosTimeA">
-        <input type="hidden" id="mediaGolsSofridosTimeA">
-        <input type="hidden" id="mediaGolsMarcadosTimeB">
-        <input type="hidden" id="mediaGolsSofridosTimeB">
+        <input type="hidden" id="mediaGolsMarcadosTimeA" />
+        <input type="hidden" id="mediaGolsSofridosTimeA" />
+        <input type="hidden" id="mediaGolsMarcadosTimeB" />
+        <input type="hidden" id="mediaGolsSofridosTimeB" />
 
         <h3>Médias dos Times</h3>
         <div id="exibicaoMedias" class="box-medias">
@@ -111,13 +114,10 @@
             <p>Gols Sofridos: <span id="exibeGolsSofridosB">-</span></p>
         </div>
 
-
-
         <div class="botoes">
             <button type="button" onclick="atualizarMediasPorOdds(); gerarSugestoes();">Gerar Sugestões</button>
             <button type="button" onclick="limparCampos()" class="limpar">Limpar</button>
             <button type="button" onclick="preencherAutomatico()">Preencher Automático</button>
-
         </div>
 
         <section id="resultado"></section>
@@ -127,6 +127,7 @@
 </body>
 
 </html>
+
 
 
 <!-- apagar ate aqui -->

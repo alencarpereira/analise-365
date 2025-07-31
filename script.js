@@ -46,6 +46,9 @@ function gerarSugestoes() {
         }
     }
 
+    // Pegando o valor customizado do alvo de escanteios
+    const escanteiosAlvo = parseInt(document.getElementById('escanteiosAlvo').value) || 5;
+
     // Avaliação das odds 1X2
     avaliarOdd("Vitória Time A", parseFloat(document.getElementById('oddVitoriaA').value), false, true);
     avaliarOdd("Empate", parseFloat(document.getElementById('oddEmpate').value), false, true);
@@ -58,9 +61,13 @@ function gerarSugestoes() {
     avaliarOdd("Under 2.5 Gols", parseFloat(document.getElementById('oddUnder25').value));
     avaliarOdd("Ambos Marcam - Sim", parseFloat(document.getElementById('oddAmbosSim').value));
     avaliarOdd("Ambos Marcam - Não", parseFloat(document.getElementById('oddAmbosNao').value));
-    avaliarOdd("Escanteios Mais de", parseFloat(document.getElementById('oddEscanteiosMais').value));
-    avaliarOdd("Escanteios Exatamente", parseFloat(document.getElementById('oddEscanteiosExato').value));
-    avaliarOdd("Escanteios Menos de", parseFloat(document.getElementById('oddEscanteiosMenos').value));
+
+    // Escanteios usando o valor customizado do alvo no nome
+    avaliarOdd(`Mais de ${escanteiosAlvo} Escanteios`, parseFloat(document.getElementById('oddEscanteiosMais').value));
+    avaliarOdd("Exatamente Escanteios", parseFloat(document.getElementById('oddEscanteiosExato').value));
+    avaliarOdd("Menos de Escanteios", parseFloat(document.getElementById('oddEscanteiosMenos').value));
+
+    // Cartões
     avaliarOdd("Cartões Ambos - Sim", parseFloat(document.getElementById('oddCartoesSim').value));
     avaliarOdd("Cartões Ambos - Não", parseFloat(document.getElementById('oddCartoesNao').value));
 
@@ -69,6 +76,7 @@ function gerarSugestoes() {
     avaliarOdd("Dupla Hipótese: Empate ou Time B", parseFloat(document.getElementById('oddDuplaEmpateB').value), true);
     avaliarOdd("Dupla Hipótese: Time A ou Time B", parseFloat(document.getElementById('oddDuplaAB').value), true);
 
+    // Ajustes por médias (opcional)
     function ajustarSugestoesPorMedias() {
         if (timeA.golsMarcadosMed > 1 && timeB.golsMarcadosMed > 1) {
             const idx = sugestoesSimples.findIndex(s => s.nome === "Ambos Marcam - Não");
@@ -156,6 +164,7 @@ function gerarSugestoes() {
 
     resultado.innerHTML = html;
 }
+
 
 function calcularMediaGolsPelaOdd(oddMais25) {
     if (!oddMais25 || isNaN(oddMais25) || oddMais25 <= 1) {
@@ -247,6 +256,7 @@ function preencherAutomatico() {
         oddUnder25: 1.70,
         oddAmbosSim: 1.95,
         oddAmbosNao: 1.85,
+        escanteiosAlvo: 5,            // ADICIONE ESSA LINHA
         oddEscanteiosMais: 1.80,
         oddEscanteiosExato: 3.00,
         oddEscanteiosMenos: 2.50,
@@ -264,6 +274,7 @@ function preencherAutomatico() {
         }
     }
 }
+
 
 function atualizarMediasPorOdds() {
     const oddMais25 = parseFloat(document.getElementById('oddOver15').value);
