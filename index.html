@@ -27,6 +27,56 @@
 
         <section>
             <h2>Resultado 1X2 + Empate Anula</h2>
+
+            <div class="ultimos-jogos-container">
+                <div class="time-section">
+                    <h3>Time A</h3>
+                    <div class="linha-gols">
+                        <div class="label-gols">Marcados:</div>
+                        <div class="input-group">
+                            <input type="number" id="timeA_j1_marcados" min="0" max="99" step="1" placeholder="J1" />
+                            <input type="number" id="timeA_j2_marcados" min="0" max="99" step="1" placeholder="J2" />
+                            <input type="number" id="timeA_j3_marcados" min="0" max="99" step="1" placeholder="J3" />
+                            <input type="number" id="timeA_j4_marcados" min="0" max="99" step="1" placeholder="J4" />
+                            <input type="number" id="timeA_j5_marcados" min="0" max="99" step="1" placeholder="J5" />
+                        </div>
+                    </div>
+                    <div class="linha-gols">
+                        <div class="label-gols">Sofridos:</div>
+                        <div class="input-group">
+                            <input type="number" id="timeA_j1_sofridos" min="0" max="99" step="1" placeholder="J1" />
+                            <input type="number" id="timeA_j2_sofridos" min="0" max="99" step="1" placeholder="J2" />
+                            <input type="number" id="timeA_j3_sofridos" min="0" max="99" step="1" placeholder="J3" />
+                            <input type="number" id="timeA_j4_sofridos" min="0" max="99" step="1" placeholder="J4" />
+                            <input type="number" id="timeA_j5_sofridos" min="0" max="99" step="1" placeholder="J5" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="time-section">
+                    <h3>Time B</h3>
+                    <div class="linha-gols">
+                        <div class="label-gols">Marcados:</div>
+                        <div class="input-group">
+                            <input type="number" id="timeB_j1_marcados" min="0" max="99" step="1" placeholder="J1" />
+                            <input type="number" id="timeB_j2_marcados" min="0" max="99" step="1" placeholder="J2" />
+                            <input type="number" id="timeB_j3_marcados" min="0" max="99" step="1" placeholder="J3" />
+                            <input type="number" id="timeB_j4_marcados" min="0" max="99" step="1" placeholder="J4" />
+                            <input type="number" id="timeB_j5_marcados" min="0" max="99" step="1" placeholder="J5" />
+                        </div>
+                    </div>
+                    <div class="linha-gols">
+                        <div class="label-gols">Sofridos:</div>
+                        <div class="input-group">
+                            <input type="number" id="timeB_j1_sofridos" min="0" max="99" step="1" placeholder="J1" />
+                            <input type="number" id="timeB_j2_sofridos" min="0" max="99" step="1" placeholder="J2" />
+                            <input type="number" id="timeB_j3_sofridos" min="0" max="99" step="1" placeholder="J3" />
+                            <input type="number" id="timeB_j4_sofridos" min="0" max="99" step="1" placeholder="J4" />
+                            <input type="number" id="timeB_j5_sofridos" min="0" max="99" step="1" placeholder="J5" />
+                        </div>
+                    </div>
+                </div>
+            </div>
             <label for="oddVitoriaA">Vitória Time A:</label>
             <input type="number" id="oddVitoriaA" step="0.01" min="1" />
 
@@ -115,12 +165,21 @@
         </div>
 
         <div class="botoes">
-            <button type="button" onclick="atualizarMediasPorOdds(); gerarSugestoes();">Gerar Sugestões</button>
+            <button type="button" onclick="atualizarMedias(); gerarSugestoes();">Gerar Sugestões</button>
             <button type="button" onclick="limparCampos()" class="limpar">Limpar</button>
             <button type="button" onclick="preencherAutomatico()">Preencher Automático</button>
         </div>
+        <div id="resultado"></div>
+        <div id="sugestaoForte"></div>
+        <div id="sugestaoSimples" class="caixa-sugestao"></div>
 
-        <section id="resultado"></section>
+
+        <button onclick="alternarDebug()">🔍 Alternar Modo Debug</button>
+        <div id="debug"
+            style="display:none; white-space:pre-line; background:#f0f0f0; border:1px solid #999; padding:10px; margin-top:10px;">
+        </div>
+
+
     </main>
 
     <script src="script.js"></script>

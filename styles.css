@@ -34,6 +34,50 @@ h2 {
     color: #004080;
 }
 
+.ultimos-jogos-container {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+    font-size: 12px;
+}
+
+.time-section {
+    flex: 1 1 300px;
+    border: 1px solid #bbb;
+    padding: 6px 8px;
+    border-radius: 4px;
+}
+
+.linha-gols {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    margin-bottom: 6px;
+}
+
+.label-gols {
+    width: 80px;
+    font-weight: 600;
+}
+
+.input-group {
+    display: flex;
+    gap: 4px;
+}
+
+.input-group input {
+    width: 28px;
+    height: 24px;
+    font-size: 12px;
+    text-align: center;
+    padding: 0;
+}
+
+h3 {
+    margin: 0 0 6px 0;
+    font-size: 14px;
+}
+
 label {
     display: block;
     margin-bottom: 0.3rem;
@@ -119,15 +163,45 @@ button.limpar {
     color: #2d6a4f;
 }
 
-.sugestao.dupla {
-    background-color: #fff8e1;
-    border-left: 5px solid #ffb300;
-    padding: 0.8rem 1rem;
-    margin-bottom: 1rem;
-    border-radius: 6px;
-    font-weight: 600;
-    color: #7c4700;
+.sugestao {
+    padding: 8px;
+    margin-bottom: 8px;
+    border-radius: 5px;
+    box-shadow: 0 0 6px #ccc;
 }
+
+.sugestao.alta {
+    background-color: #e0ffe0;
+    border: 2px solid #0a0;
+}
+
+.sugestao.media {
+    background-color: #fff8e0;
+    border: 2px solid #aa0;
+}
+
+.sugestao.dupla {
+    background-color: #e0f0ff;
+    border: 2px solid #00a;
+}
+
+.valor-aposta {
+    font-weight: bold;
+    color: #080;
+}
+
+.debug-box {
+    background-color: #f0f0f0;
+    border-left: 4px solid #999;
+    padding: 1rem;
+    margin-top: 1rem;
+    font-family: monospace;
+    white-space: pre-wrap;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+
 
 @media (max-width: 480px) {
     .container {
