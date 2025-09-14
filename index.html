@@ -12,71 +12,77 @@
     <main class="container">
         <h1>Calculadora de Odds e Sugestões</h1>
 
-        <!-- NOVO: Seletor de jogo -->
+        <!-- Seletor de jogo -->
         <select id="seletorJogo" onchange="onJogoChange()">
             <option value="">Selecione um jogo</option>
             <option value="jogo1">Time A x Time B (Jogo 1)</option>
             <option value="jogo2">Time C x Time D (Jogo 2)</option>
         </select>
 
+        <!-- Valor da banca -->
         <section>
             <h2>Valor da Banca</h2>
             <label for="valorBanca">Informe sua banca (R$):</label>
             <input type="number" id="valorBanca" step="0.01" min="1" />
         </section>
 
+        <!-- Resultados e Odds 1X2 -->
         <section>
             <h2>Resultado 1X2 + Empate Anula</h2>
 
             <div class="ultimos-jogos-container">
+                <!-- Time A -->
                 <div class="time-section">
                     <h3>Time A</h3>
                     <div class="linha-gols">
                         <div class="label-gols">Marcados:</div>
                         <div class="input-group">
-                            <input type="number" id="timeA_j1_marcados" min="0" max="99" step="1" placeholder="J1" />
-                            <input type="number" id="timeA_j2_marcados" min="0" max="99" step="1" placeholder="J2" />
-                            <input type="number" id="timeA_j3_marcados" min="0" max="99" step="1" placeholder="J3" />
-                            <input type="number" id="timeA_j4_marcados" min="0" max="99" step="1" placeholder="J4" />
-                            <input type="number" id="timeA_j5_marcados" min="0" max="99" step="1" placeholder="J5" />
+                            <input type="number" id="timeA_j1_marcados" min="0" max="99" placeholder="J1" />
+                            <input type="number" id="timeA_j2_marcados" min="0" max="99" placeholder="J2" />
+                            <input type="number" id="timeA_j3_marcados" min="0" max="99" placeholder="J3" />
+                            <input type="number" id="timeA_j4_marcados" min="0" max="99" placeholder="J4" />
+                            <input type="number" id="timeA_j5_marcados" min="0" max="99" placeholder="J5" />
                         </div>
                     </div>
                     <div class="linha-gols">
                         <div class="label-gols">Sofridos:</div>
                         <div class="input-group">
-                            <input type="number" id="timeA_j1_sofridos" min="0" max="99" step="1" placeholder="J1" />
-                            <input type="number" id="timeA_j2_sofridos" min="0" max="99" step="1" placeholder="J2" />
-                            <input type="number" id="timeA_j3_sofridos" min="0" max="99" step="1" placeholder="J3" />
-                            <input type="number" id="timeA_j4_sofridos" min="0" max="99" step="1" placeholder="J4" />
-                            <input type="number" id="timeA_j5_sofridos" min="0" max="99" step="1" placeholder="J5" />
+                            <input type="number" id="timeA_j1_sofridos" min="0" max="99" placeholder="J1" />
+                            <input type="number" id="timeA_j2_sofridos" min="0" max="99" placeholder="J2" />
+                            <input type="number" id="timeA_j3_sofridos" min="0" max="99" placeholder="J3" />
+                            <input type="number" id="timeA_j4_sofridos" min="0" max="99" placeholder="J4" />
+                            <input type="number" id="timeA_j5_sofridos" min="0" max="99" placeholder="J5" />
                         </div>
                     </div>
                 </div>
 
+                <!-- Time B -->
                 <div class="time-section">
                     <h3>Time B</h3>
                     <div class="linha-gols">
                         <div class="label-gols">Marcados:</div>
                         <div class="input-group">
-                            <input type="number" id="timeB_j1_marcados" min="0" max="99" step="1" placeholder="J1" />
-                            <input type="number" id="timeB_j2_marcados" min="0" max="99" step="1" placeholder="J2" />
-                            <input type="number" id="timeB_j3_marcados" min="0" max="99" step="1" placeholder="J3" />
-                            <input type="number" id="timeB_j4_marcados" min="0" max="99" step="1" placeholder="J4" />
-                            <input type="number" id="timeB_j5_marcados" min="0" max="99" step="1" placeholder="J5" />
+                            <input type="number" id="timeB_j1_marcados" min="0" max="99" placeholder="J1" />
+                            <input type="number" id="timeB_j2_marcados" min="0" max="99" placeholder="J2" />
+                            <input type="number" id="timeB_j3_marcados" min="0" max="99" placeholder="J3" />
+                            <input type="number" id="timeB_j4_marcados" min="0" max="99" placeholder="J4" />
+                            <input type="number" id="timeB_j5_marcados" min="0" max="99" placeholder="J5" />
                         </div>
                     </div>
                     <div class="linha-gols">
                         <div class="label-gols">Sofridos:</div>
                         <div class="input-group">
-                            <input type="number" id="timeB_j1_sofridos" min="0" max="99" step="1" placeholder="J1" />
-                            <input type="number" id="timeB_j2_sofridos" min="0" max="99" step="1" placeholder="J2" />
-                            <input type="number" id="timeB_j3_sofridos" min="0" max="99" step="1" placeholder="J3" />
-                            <input type="number" id="timeB_j4_sofridos" min="0" max="99" step="1" placeholder="J4" />
-                            <input type="number" id="timeB_j5_sofridos" min="0" max="99" step="1" placeholder="J5" />
+                            <input type="number" id="timeB_j1_sofridos" min="0" max="99" placeholder="J1" />
+                            <input type="number" id="timeB_j2_sofridos" min="0" max="99" placeholder="J2" />
+                            <input type="number" id="timeB_j3_sofridos" min="0" max="99" placeholder="J3" />
+                            <input type="number" id="timeB_j4_sofridos" min="0" max="99" placeholder="J4" />
+                            <input type="number" id="timeB_j5_sofridos" min="0" max="99" placeholder="J5" />
                         </div>
                     </div>
                 </div>
             </div>
+
+            <!-- Odds 1X2 -->
             <label for="oddVitoriaA">Vitória Time A:</label>
             <input type="number" id="oddVitoriaA" step="0.01" min="1" />
 
@@ -93,18 +99,20 @@
             <input type="number" id="oddVitoriaB" step="0.01" min="1" />
         </section>
 
+        <!-- Dupla Hipótese -->
         <section>
             <h2>Dupla Hipótese (Odds)</h2>
             <label for="oddDuplaAEmpate">Time A ou Empate:</label>
-            <input type="number" id="oddDuplaAEmpate" step="0.01" min="1" placeholder="Ex: 1.20" />
+            <input type="number" id="oddDuplaAEmpate" step="0.01" min="1" />
 
             <label for="oddDuplaEmpateB">Empate ou Time B:</label>
-            <input type="number" id="oddDuplaEmpateB" step="0.01" min="1" placeholder="Ex: 1.30" />
+            <input type="number" id="oddDuplaEmpateB" step="0.01" min="1" />
 
             <label for="oddDuplaAB">Time A ou Time B:</label>
-            <input type="number" id="oddDuplaAB" step="0.01" min="1" placeholder="Ex: 1.50" />
+            <input type="number" id="oddDuplaAB" step="0.01" min="1" />
         </section>
 
+        <!-- Gols -->
         <section>
             <h2>Mercado de Gols</h2>
             <label for="oddOver15">Over 1.5 Gols:</label>
@@ -114,19 +122,21 @@
             <input type="number" id="oddUnder25" step="0.01" min="1" />
         </section>
 
+        <!-- Ambos Marcam -->
         <section>
             <h2>Ambos Marcam</h2>
-            <label for="oddAmbosSim">Ambos Marcam - Sim:</label>
+            <label for="oddAmbosSim">Sim:</label>
             <input type="number" id="oddAmbosSim" step="0.01" min="1" />
 
-            <label for="oddAmbosNao">Ambos Marcam - Não:</label>
+            <label for="oddAmbosNao">Não:</label>
             <input type="number" id="oddAmbosNao" step="0.01" min="1" />
         </section>
 
+        <!-- Escanteios -->
         <section>
             <h2>Escanteios</h2>
             <label for="escanteiosAlvo">Mais de quantos escanteios?</label>
-            <input type="number" id="escanteiosAlvo" min="1" step="1" placeholder="Ex: 5" />
+            <input type="number" id="escanteiosAlvo" min="1" />
 
             <label for="oddEscanteiosMais">Odd - Mais de X escanteios:</label>
             <input type="number" id="oddEscanteiosMais" step="0.01" min="1" />
@@ -138,54 +148,55 @@
             <input type="number" id="oddEscanteiosMenos" step="0.01" min="1" />
         </section>
 
+        <!-- Cartões -->
         <section>
             <h2>Cartões</h2>
-            <label for="oddCartoesSim">Cartões para ambos os times - Sim:</label>
+            <label for="oddCartoesSim">Sim:</label>
             <input type="number" id="oddCartoesSim" step="0.01" min="1" />
 
-            <label for="oddCartoesNao">Cartões para ambos os times - Não:</label>
+            <label for="oddCartoesNao">Não:</label>
             <input type="number" id="oddCartoesNao" step="0.01" min="1" />
         </section>
 
-        <!-- Dados ocultos para médias -->
+        <!-- Campos ocultos para médias -->
         <input type="hidden" id="mediaGolsMarcadosTimeA" />
         <input type="hidden" id="mediaGolsSofridosTimeA" />
         <input type="hidden" id="mediaGolsMarcadosTimeB" />
         <input type="hidden" id="mediaGolsSofridosTimeB" />
 
+        <!-- Exibição de médias -->
         <h3>Médias dos Times</h3>
         <div id="exibicaoMedias" class="box-medias">
-            <p><strong>Time A:</strong></p>
-            <p>Gols Marcados: <span id="exibeGolsMarcadosA">-</span></p>
-            <p>Gols Sofridos: <span id="exibeGolsSofridosA">-</span></p>
-
-            <p><strong>Time B:</strong></p>
-            <p>Gols Marcados: <span id="exibeGolsMarcadosB">-</span></p>
-            <p>Gols Sofridos: <span id="exibeGolsSofridosB">-</span></p>
+            <p><strong>Time A:</strong> Gols Marcados: <span id="exibeGolsMarcadosA">-</span> | Gols Sofridos: <span
+                    id="exibeGolsSofridosA">-</span></p>
+            <p><strong>Time B:</strong> Gols Marcados: <span id="exibeGolsMarcadosB">-</span> | Gols Sofridos: <span
+                    id="exibeGolsSofridosB">-</span></p>
         </div>
 
+        <!-- Botões de ação -->
         <div class="botoes">
             <button type="button" onclick="atualizarMedias(); gerarSugestoes();">Gerar Sugestões</button>
             <button type="button" onclick="limparCampos()" class="limpar">Limpar</button>
             <button type="button" onclick="preencherAutomatico()">Preencher Automático</button>
         </div>
+
+        <!-- Resultados -->
         <div id="resultado"></div>
         <div id="sugestaoForte"></div>
         <div id="sugestaoSimples" class="caixa-sugestao"></div>
 
-
+        <!-- Debug -->
         <button onclick="alternarDebug()">🔍 Alternar Modo Debug</button>
         <div id="debug"
             style="display:none; white-space:pre-line; background:#f0f0f0; border:1px solid #999; padding:10px; margin-top:10px;">
         </div>
-
-
     </main>
 
     <script src="script.js"></script>
 </body>
 
 </html>
+
 
 
 
