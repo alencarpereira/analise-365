@@ -1,4 +1,4 @@
-// Atualiza médias quando qualquer input dos jogos é alterado
+// --- Atualiza médias quando qualquer input dos jogos é alterado ---
 function adicionarEventosInputs() {
     const inputsJogos = document.querySelectorAll('input[id^="timeA_j"], input[id^="timeB_j"]');
     inputsJogos.forEach(input => {
@@ -8,7 +8,7 @@ function adicionarEventosInputs() {
     });
 }
 
-// Função para preencher dados de exemplo automaticamente
+// --- Função para preencher dados de exemplo automaticamente ---
 function preencherAutomatico() {
     const valores = {
         valorBanca: 100,
@@ -56,15 +56,13 @@ function preencherAutomatico() {
 
     for (const id in valores) {
         const el = document.getElementById(id);
-        if (el) {
-            el.value = valores[id];
-        }
+        if (el) el.value = valores[id];
     }
     atualizarMedias();
     gerarSugestoes();
 }
 
-// Calcula médias de gols marcados e sofridos para um time
+// --- Calcula médias de gols marcados e sofridos para um time ---
 function calcularMediaGols(timePrefix) {
     let somaMarcados = 0;
     let somaSofridos = 0;
@@ -83,33 +81,29 @@ function calcularMediaGols(timePrefix) {
     };
 }
 
-// Atualiza médias exibidas na tela (spans)
+// --- Atualiza médias exibidas na tela ---
 function atualizarMedias() {
     const mediaA = calcularMediaGols('timeA');
     const mediaB = calcularMediaGols('timeB');
 
     document.getElementById('exibeGolsMarcadosA').textContent = mediaA.mediaMarcados.toFixed(2);
     document.getElementById('exibeGolsSofridosA').textContent = mediaA.mediaSofridos.toFixed(2);
-
     document.getElementById('exibeGolsMarcadosB').textContent = mediaB.mediaMarcados.toFixed(2);
     document.getElementById('exibeGolsSofridosB').textContent = mediaB.mediaSofridos.toFixed(2);
 
-    // Atualiza os inputs hidden com as médias para serem usados nas sugestões
     document.getElementById('mediaGolsMarcadosTimeA').value = mediaA.mediaMarcados.toFixed(2);
     document.getElementById('mediaGolsSofridosTimeA').value = mediaA.mediaSofridos.toFixed(2);
     document.getElementById('mediaGolsMarcadosTimeB').value = mediaB.mediaMarcados.toFixed(2);
     document.getElementById('mediaGolsSofridosTimeB').value = mediaB.mediaSofridos.toFixed(2);
 }
 
-
-
-// Função para alternar o modo debug
+// --- Função para alternar modo debug ---
 function alternarDebug() {
     const debugBox = document.getElementById("debug");
     debugBox.style.display = debugBox.style.display === "none" ? "block" : "none";
 }
 
-// Função para limpar todos os campos
+// --- Função para limpar todos os campos ---
 function limparCampos() {
     document.querySelectorAll('input[type="number"]').forEach(input => input.value = '');
     document.getElementById('resultado').innerHTML = '';
@@ -122,54 +116,34 @@ function limparCampos() {
     document.getElementById('exibeGolsSofridosB').textContent = '-';
 }
 
-// Evento para atualizar médias ao trocar jogo no seletor
+// --- Atualiza valores ao trocar de jogo ---
 function onJogoChange() {
     const seletor = document.getElementById('seletorJogo');
     const valor = seletor.value;
     const jogos = {
         jogo1: {
-            timeA_j1_marcados: 1,
-            timeA_j1_sofridos: 0,
-            timeA_j2_marcados: 2,
-            timeA_j2_sofridos: 1,
-            timeA_j3_marcados: 1,
-            timeA_j3_sofridos: 2,
-            timeA_j4_marcados: 3,
-            timeA_j4_sofridos: 0,
-            timeA_j5_marcados: 0,
-            timeA_j5_sofridos: 1,
-            timeB_j1_marcados: 1,
-            timeB_j1_sofridos: 2,
-            timeB_j2_marcados: 1,
-            timeB_j2_sofridos: 1,
-            timeB_j3_marcados: 0,
-            timeB_j3_sofridos: 1,
-            timeB_j4_marcados: 2,
-            timeB_j4_sofridos: 3,
-            timeB_j5_marcados: 1,
-            timeB_j5_sofridos: 0,
+            timeA_j1_marcados: 1, timeA_j1_sofridos: 0,
+            timeA_j2_marcados: 2, timeA_j2_sofridos: 1,
+            timeA_j3_marcados: 1, timeA_j3_sofridos: 2,
+            timeA_j4_marcados: 3, timeA_j4_sofridos: 0,
+            timeA_j5_marcados: 0, timeA_j5_sofridos: 1,
+            timeB_j1_marcados: 1, timeB_j1_sofridos: 2,
+            timeB_j2_marcados: 1, timeB_j2_sofridos: 1,
+            timeB_j3_marcados: 0, timeB_j3_sofridos: 1,
+            timeB_j4_marcados: 2, timeB_j4_sofridos: 3,
+            timeB_j5_marcados: 1, timeB_j5_sofridos: 0,
         },
         jogo2: {
-            timeA_j1_marcados: 2,
-            timeA_j1_sofridos: 1,
-            timeA_j2_marcados: 1,
-            timeA_j2_sofridos: 0,
-            timeA_j3_marcados: 3,
-            timeA_j3_sofridos: 1,
-            timeA_j4_marcados: 2,
-            timeA_j4_sofridos: 2,
-            timeA_j5_marcados: 1,
-            timeA_j5_sofridos: 1,
-            timeB_j1_marcados: 0,
-            timeB_j1_sofridos: 2,
-            timeB_j2_marcados: 2,
-            timeB_j2_sofridos: 1,
-            timeB_j3_marcados: 1,
-            timeB_j3_sofridos: 1,
-            timeB_j4_marcados: 0,
-            timeB_j4_sofridos: 2,
-            timeB_j5_marcados: 1,
-            timeB_j5_sofridos: 3,
+            timeA_j1_marcados: 2, timeA_j1_sofridos: 1,
+            timeA_j2_marcados: 1, timeA_j2_sofridos: 0,
+            timeA_j3_marcados: 3, timeA_j3_sofridos: 1,
+            timeA_j4_marcados: 2, timeA_j4_sofridos: 2,
+            timeA_j5_marcados: 1, timeA_j5_sofridos: 1,
+            timeB_j1_marcados: 0, timeB_j1_sofridos: 2,
+            timeB_j2_marcados: 2, timeB_j2_sofridos: 1,
+            timeB_j3_marcados: 1, timeB_j3_sofridos: 1,
+            timeB_j4_marcados: 0, timeB_j4_sofridos: 2,
+            timeB_j5_marcados: 1, timeB_j5_sofridos: 3,
         }
     };
 
@@ -182,19 +156,15 @@ function onJogoChange() {
     }
 }
 
-// Inicialização: adiciona eventos inputs e esconde debug
+// --- Inicialização ---
 window.onload = () => {
     adicionarEventosInputs();
     document.getElementById("debug").style.display = "none";
 };
 
-
-/**
- * Função pura que recebe array de mercados {nome, odd} e retorna array de sugestões com probabilidade e tipo
- */
+// --- Função pura: gera sugestões simples ---
 function gerarSugestaoSimples(mercados) {
     const sugestoes = [];
-
     mercados.forEach(m => {
         if (m.odd && m.odd > 1) {
             const probabilidade = 100 / m.odd;
@@ -204,14 +174,14 @@ function gerarSugestaoSimples(mercados) {
                 odd: m.odd,
                 probabilidade,
                 tipo,
-                valorAposta: (probabilidade / 100) * 10 // aposta proporcional à probabilidade
+                valorAposta: (probabilidade / 100) * 10
             });
         }
     });
-
     return sugestoes;
 }
 
+// --- Função principal: gera sugestões ---
 function gerarSugestoes() {
     const banca = parseFloat(document.getElementById('valorBanca').value);
     const resultado = document.getElementById('resultado');
@@ -239,7 +209,6 @@ function gerarSugestoes() {
         golsSofridosMed: parseFloat(document.getElementById('mediaGolsSofridosTimeB').value) || 0,
     };
 
-    // Mercados simples
     const mercadosSimples = [
         { nome: "Vitória Time A", odd: parseFloat(document.getElementById('oddVitoriaA').value) },
         { nome: "Empate", odd: parseFloat(document.getElementById('oddEmpate').value) },
@@ -257,41 +226,31 @@ function gerarSugestoes() {
         { nome: "Cartões Ambos - Não", odd: parseFloat(document.getElementById('oddCartoesNao').value) }
     ];
 
-    // Dupla hipótese
     const mercadosDuplaHipotese = [
         { nome: "Dupla Hipótese: Time A ou Empate", odd: parseFloat(document.getElementById('oddDuplaAEmpate').value) },
         { nome: "Dupla Hipótese: Empate ou Time B", odd: parseFloat(document.getElementById('oddDuplaEmpateB').value) },
         { nome: "Dupla Hipótese: Time A ou Time B", odd: parseFloat(document.getElementById('oddDuplaAB').value) }
     ];
 
-    // Gera sugestões simples
     let sugestoesSimples = gerarSugestaoSimples(mercadosSimples);
 
-    // Ajustes por médias (exemplo)
     if (timeA.golsMarcadosMed > 1 && timeB.golsMarcadosMed > 1) {
-        // Remove "Ambos Marcam - Não"
         sugestoesSimples = sugestoesSimples.filter(s => s.nome !== "Ambos Marcam - Não");
     }
-
     const soma = timeA.golsMarcadosMed + timeA.golsSofridosMed + timeB.golsMarcadosMed + timeB.golsSofridosMed;
     if (soma > 3.5) {
-        // Remove "Under 2.5 Gols"
         sugestoesSimples = sugestoesSimples.filter(s => s.nome !== "Under 2.5 Gols");
     }
 
-    // Gera sugestões dupla hipótese
     let sugestoesDuplaHipotese = gerarSugestaoSimples(mercadosDuplaHipotese);
 
-    // Se tem dupla hipótese, filtra simples removendo mercados 1X2
     const temDuplaHipotese = sugestoesDuplaHipotese.length > 0;
     let sugestoesSimplesFiltradas = temDuplaHipotese
         ? sugestoesSimples.filter(s => !["Vitória Time A", "Empate", "Empate Anula A", "Empate Anula B", "Vitória Time B"].includes(s.nome))
         : sugestoesSimples;
 
-    // Ordena as sugestões simples filtradas
     sugestoesSimplesFiltradas.sort((a, b) => b.probabilidade - a.probabilidade);
 
-    // Monta o HTML para sugestões simples na div `sugestaoSimples`
     if (sugestoesSimplesFiltradas.length === 0) {
         sugestaoSimplesDiv.innerHTML = `<p>Nenhuma sugestão simples gerada. Preencha as odds corretamente.</p>`;
     } else {
@@ -305,7 +264,7 @@ function gerarSugestoes() {
         `).join('');
     }
 
-    // Melhor dupla sugestão entre simples x simples
+    // Melhor dupla sugestão
     let melhorDupla = null;
     for (let i = 0; i < sugestoesSimplesFiltradas.length; i++) {
         for (let j = i + 1; j < sugestoesSimplesFiltradas.length; j++) {
@@ -315,17 +274,11 @@ function gerarSugestoes() {
             if (oddCombinada < 1.6) continue;
             const mediaProb = (s1.probabilidade + s2.probabilidade) / 2;
             if (!melhorDupla || mediaProb > melhorDupla.mediaProb) {
-                melhorDupla = {
-                    nome: `${s1.nome} + ${s2.nome}`,
-                    oddCombinada,
-                    mediaProb,
-                    valorAposta: banca * 0.05
-                };
+                melhorDupla = { nome: `${s1.nome} + ${s2.nome}`, oddCombinada, mediaProb, valorAposta: banca * 0.05 };
             }
         }
     }
 
-    // Melhor dupla sugestão entre dupla hipótese x simples
     for (let d = 0; d < sugestoesDuplaHipotese.length; d++) {
         for (let s = 0; s < sugestoesSimplesFiltradas.length; s++) {
             const dupla = sugestoesDuplaHipotese[d];
@@ -334,19 +287,11 @@ function gerarSugestoes() {
             if (oddCombinada < 1.6) continue;
             const mediaProb = (dupla.probabilidade + simples.probabilidade) / 2;
             if (!melhorDupla || mediaProb > melhorDupla.mediaProb) {
-                melhorDupla = {
-                    nome: `${dupla.nome} + ${simples.nome}`,
-                    oddCombinada,
-                    mediaProb,
-                    valorAposta: banca * 0.05
-                };
+                melhorDupla = { nome: `${dupla.nome} + ${simples.nome}`, oddCombinada, mediaProb, valorAposta: banca * 0.05 };
             }
         }
     }
 
-    // Exibe as sugestões simples combinadas (já feito acima na div sugestaoSimples)
-
-    // Exibe a melhor dupla sugestão na div `resultado`
     if (melhorDupla) {
         resultado.innerHTML = `
             <div class="sugestao dupla" style="margin-top:10px; padding:8px; border:2px solid #007700; border-radius:6px;">
@@ -356,22 +301,14 @@ function gerarSugestoes() {
                 <span class="valor-aposta" style="color:#004400;">Sugestão: Apostar R$ ${melhorDupla.valorAposta.toFixed(2)}</span>
             </div>
         `;
-    } else {
-        resultado.innerHTML = '';
     }
 
-    // Sugestão forte: alta confiança, odds entre 1.5 e 2.2, não repetida na dupla
-    let nomesDaDupla = melhorDupla ? melhorDupla.nome.split(' + ').map(n => n.trim()) : [];
-
+    const nomesDaDupla = melhorDupla ? melhorDupla.nome.split(' + ').map(n => n.trim()) : [];
     const sugestoesFortes = sugestoesSimplesFiltradas.filter(s =>
-        s.probabilidade >= 65 &&
-        s.tipo === "Alta" &&
-        s.odd >= 1.5 && s.odd <= 2.2 &&
-        !nomesDaDupla.includes(s.nome)
+        s.probabilidade >= 65 && s.tipo === "Alta" && s.odd >= 1.5 && s.odd <= 2.2 && !nomesDaDupla.includes(s.nome)
     );
 
     sugestoesFortes.sort((a, b) => b.probabilidade - a.probabilidade);
-
     if (sugestoesFortes.length > 0) {
         const melhor = sugestoesFortes[0];
         sugestaoForteDiv.innerHTML = `
@@ -387,13 +324,12 @@ function gerarSugestoes() {
     exibirDebug(`Foram geradas ${sugestoesSimplesFiltradas.length} sugestões simples e ${sugestoesDuplaHipotese.length} sugestões dupla hipótese.`);
 }
 
+// --- Função de debug ---
 function exibirDebug(texto) {
     const debugBox = document.getElementById("debug");
     debugBox.textContent = texto;
 }
 
-
-// Removidos os addEventListener para os botões pois você já tem eventos inline no HTML.
 
 // Apenas inicializa debug escondido
 document.getElementById("debug").style.display = "none";
