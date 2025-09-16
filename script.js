@@ -1,190 +1,191 @@
-// Função para converter "x/y" em porcentagem
-function parseXY(valor) {
-    if (!valor || !valor.includes('/')) return 0;
-    let partes = valor.split('/');
-    let x = parseInt(partes[0]) || 0;
-    let y = parseInt(partes[1]) || 0;
-    if (y === 0) return 0;
-    return (x / y) * 100;
+// -------------------- Funções Auxiliares --------------------
+
+// Converte x/y em porcentagem
+function calcPercent(valor) {
+    if (!valor) return 0;
+    const parts = valor.split('/');
+    const numerador = parseFloat(parts[0]) || 0;
+    const denominador = parseFloat(parts[1]) || 1;
+    return (numerador / denominador) * 100;
 }
 
-// Preencher campos com exemplo
-document.getElementById('preencherExemplo').addEventListener('click', () => {
-    const exemplo = {
-        nomeCasa: "Juventus",
-        vitoriasCasa: "3/5",
-        vitoriasCasaEmCasa: "3/5",
-        vitoriasCasaFora: "2/5",
-        naoVenceuCasa: "2/5",
-        maisGolsCasa: "3/4",
-        menosGolsCasa: "1/4",
-        menosGolsCasaFora: "1/4",
-        marcouPrimeiroCasa: "3/4",
-        vencePrimeiroTempoCasa: "2/4",
-        ambosMarcamCasa: "3/4",
+// Formata para 1 casa decimal
+function pct(valor) {
+    return (valor || 0).toFixed(1);
+}
 
-        nomeFora: "Borussia",
-        vitoriasFora: "2/5",
-        vitoriasForaEmCasa: "2/5",
-        vitoriasForaFora: "1/5",
-        naoVenceuFora: "1/5",
-        maisGolsFora: "2/4",
-        menosGolsFora: "1/4",
-        menosGolsForaFora: "1/4",
-        marcouPrimeiroFora: "1/4",
-        vencePrimeiroTempoFora: "1/4",
-        ambosMarcamFora: "2/4",
+// Limpa todos os inputs
+function limparCampos() {
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => input.value = '');
+    document.getElementById('resultado').innerHTML = '';
+}
 
-        vitoriasCasaCD: "3/4",
-        vitoriasForaCD: "1/4",
-        empatesCD: "0/4",
-        ganhouEmpatouCasaCD: "2/4",
-        maisGolsCasaCD: "2/4",
-        menosGolsCasaCD: "1/4",
-        marcouPrimeiroCasaCD: "1/4",
-        vencePrimeiroTempoCasaCD: "1/4",
-        ambosMarcamCasaCD: "2/4",
+// Preenche exemplo
+function preencherExemplo() {
+    // Time Casa
+    document.getElementById('nomeCasa').value = 'Juventus';
+    document.getElementById('vitoriasCasa').value = '3/5';
+    document.getElementById('vitoriasCasaEmCasa').value = '3/5';
+    document.getElementById('vitoriasCasaFora').value = '2/5';
+    document.getElementById('naoVenceuCasa').value = '2/5';
+    document.getElementById('mais1_5Casa').value = '4/5';
+    document.getElementById('maisGolsCasa').value = '3/4';
+    document.getElementById('menosGolsCasa').value = '1/4';
+    document.getElementById('menosGolsCasaFora').value = '1/4';
+    document.getElementById('marcouPrimeiroCasa').value = '3/4';
+    document.getElementById('vencePrimeiroTempoCasa').value = '2/4';
+    document.getElementById('ambosMarcamCasa').value = '3/4';
 
-        ganhouEmpatouForaCD: "2/4",
-        maisGolsForaCD: "2/4",
-        menosGolsForaCD: "1/4",
-        marcouPrimeiroForaCD: "1/4",
-        vencePrimeiroTempoForaCD: "1/4",
-        ambosMarcamForaCD: "2/4"
+    // Time Visitante
+    document.getElementById('nomeFora').value = 'Borussia';
+    document.getElementById('vitoriasFora').value = '2/5';
+    document.getElementById('vitoriasForaEmCasa').value = '2/5';
+    document.getElementById('vitoriasForaFora').value = '1/5';
+    document.getElementById('naoVenceuFora').value = '1/5';
+    document.getElementById('mais1_5Fora').value = '3/5';
+    document.getElementById('maisGolsFora').value = '2/4';
+    document.getElementById('menosGolsFora').value = '1/4';
+    document.getElementById('menosGolsForaFora').value = '1/4';
+    document.getElementById('marcouPrimeiroFora').value = '1/4';
+    document.getElementById('vencePrimeiroTempoFora').value = '1/4';
+    document.getElementById('ambosMarcamFora').value = '2/4';
+
+    // Confronto Direto
+    document.getElementById('vitoriasCasaCD').value = '3/4';
+    document.getElementById('vitoriasForaCD').value = '1/4';
+    document.getElementById('empatesCD').value = '0/4';
+    document.getElementById('ganhouEmpatouCasaCD').value = '2/4';
+    document.getElementById('maisGolsCasaCD').value = '2/4';
+    document.getElementById('menosGolsCasaCD').value = '1/4';
+    document.getElementById('marcouPrimeiroCasaCD').value = '1/4';
+    document.getElementById('vencePrimeiroTempoCasaCD').value = '1/4';
+    document.getElementById('ambosMarcamCasaCD').value = '2/4';
+    document.getElementById('ganhouEmpatouForaCD').value = '2/4';
+    document.getElementById('maisGolsForaCD').value = '2/4';
+    document.getElementById('menosGolsForaCD').value = '1/4';
+    document.getElementById('marcouPrimeiroForaCD').value = '1/4';
+    document.getElementById('vencePrimeiroTempoForaCD').value = '1/4';
+    document.getElementById('ambosMarcamForaCD').value = '2/4';
+}
+
+// -------------------- Função Principal --------------------
+function gerarSugestoes() {
+    const resultado = document.getElementById('resultado');
+    resultado.innerHTML = '';
+
+    // Captura valores
+    const casa = {
+        nome: document.getElementById('nomeCasa').value,
+        vitorias: calcPercent(document.getElementById('vitoriasCasa').value),
+        vitoriasEmCasa: calcPercent(document.getElementById('vitoriasCasaEmCasa').value),
+        vitoriasFora: calcPercent(document.getElementById('vitoriasCasaFora').value),
+        naoVenceu: calcPercent(document.getElementById('naoVenceuCasa').value),
+        mais1_5: calcPercent(document.getElementById('mais1_5Casa').value),
+        mais2_5: calcPercent(document.getElementById('maisGolsCasa').value),
+        menos2_5: calcPercent(document.getElementById('menosGolsCasa').value),
+        menos2_5Fora: calcPercent(document.getElementById('menosGolsCasaFora').value),
+        marcouPrimeiro: calcPercent(document.getElementById('marcouPrimeiroCasa').value),
+        venceuPrimeiroTempo: calcPercent(document.getElementById('vencePrimeiroTempoCasa').value),
+        ambosMarcam: calcPercent(document.getElementById('ambosMarcamCasa').value)
     };
 
-    for (let key in exemplo) {
-        const input = document.getElementById(key);
-        if (input) input.value = exemplo[key];
-    }
-});
+    const visitante = {
+        nome: document.getElementById('nomeFora').value,
+        vitorias: calcPercent(document.getElementById('vitoriasFora').value),
+        vitoriasEmCasa: calcPercent(document.getElementById('vitoriasForaEmCasa').value),
+        vitoriasFora: calcPercent(document.getElementById('vitoriasForaFora').value),
+        naoVenceu: calcPercent(document.getElementById('naoVenceuFora').value),
+        mais1_5: calcPercent(document.getElementById('mais1_5Fora').value),
+        mais2_5: calcPercent(document.getElementById('maisGolsFora').value),
+        menos2_5: calcPercent(document.getElementById('menosGolsFora').value),
+        menos2_5Fora: calcPercent(document.getElementById('menosGolsForaFora').value),
+        marcouPrimeiro: calcPercent(document.getElementById('marcouPrimeiroFora').value),
+        venceuPrimeiroTempo: calcPercent(document.getElementById('vencePrimeiroTempoFora').value),
+        ambosMarcam: calcPercent(document.getElementById('ambosMarcamFora').value)
+    };
 
-// Função para limpar campos
-function resetCampos() {
-    document.querySelectorAll('input').forEach(input => {
-        if (input.id.includes("nome")) input.value = "";
-        else input.value = "0/0";
-    });
-    document.getElementById('resultado').innerHTML = "";
+    const confronto = {
+        vitoriasCasa: calcPercent(document.getElementById('vitoriasCasaCD').value),
+        vitoriasFora: calcPercent(document.getElementById('vitoriasForaCD').value),
+        empates: calcPercent(document.getElementById('empatesCD').value),
+        ganhouEmpatouCasa: calcPercent(document.getElementById('ganhouEmpatouCasaCD').value),
+        mais2_5Casa: calcPercent(document.getElementById('maisGolsCasaCD').value),
+        menos2_5Casa: calcPercent(document.getElementById('menosGolsCasaCD').value),
+        marcouPrimeiroCasa: calcPercent(document.getElementById('marcouPrimeiroCasaCD').value),
+        venceuPrimeiroTempoCasa: calcPercent(document.getElementById('vencePrimeiroTempoCasaCD').value),
+        ambosMarcamCasa: calcPercent(document.getElementById('ambosMarcamCasaCD').value),
+        ganhouEmpatouFora: calcPercent(document.getElementById('ganhouEmpatouForaCD').value),
+        mais2_5Fora: calcPercent(document.getElementById('maisGolsForaCD').value),
+        menos2_5Fora: calcPercent(document.getElementById('menosGolsForaCD').value),
+        marcouPrimeiroFora: calcPercent(document.getElementById('marcouPrimeiroForaCD').value),
+        venceuPrimeiroTempoFora: calcPercent(document.getElementById('vencePrimeiroTempoForaCD').value),
+        ambosMarcamFora: calcPercent(document.getElementById('ambosMarcamForaCD').value)
+    };
+
+    // -------------------- Lógica de +1,5 e +2,5 --------------------
+    let golsMais1_5 = casa.mais1_5 > 0 || visitante.mais1_5 > 0;
+    let golsMais2_5 = casa.mais2_5 > 0 || visitante.mais2_5 > 0;
+    let resultadoGols = '';
+
+    if (golsMais1_5 && golsMais2_5) {
+        resultadoGols = 'Anulado (campo +1,5 ou +2,5 preenchido)';
+    } else if (golsMais1_5) {
+        resultadoGols = 'Provável +1,5 gols';
+    } else if (golsMais2_5) {
+        resultadoGols = 'Provável +2,5 gols';
+    } else {
+        resultadoGols = 'Sem análise de gols';
+    }
+
+    // -------------------- Determinar vencedor provável --------------------
+    let vencedor = casa.vitorias > visitante.vitorias ? casa.nome : visitante.nome;
+
+    // -------------------- Ambos marcam --------------------
+    let ambosMarcam = (casa.ambosMarcam + visitante.ambosMarcam) / 2 > 50 ? 'Provável Ambos Marcam (BTTS)' : 'Provável Não Ambos Marcam';
+
+    // -------------------- Exibir resultado --------------------
+    resultado.innerHTML = `
+        <h3>Análise Geral</h3>
+        <p>Vencedor: ${vencedor} provável vencedor</p>
+        <p>Gols +1,5 / +2,5: ${resultadoGols}</p>
+        <p>Ambos Marcam: ${ambosMarcam}</p>
+
+        <h4>${casa.nome} (Time da Casa)</h4>
+        <p>Vitórias: ${pct(casa.vitorias)}%</p>
+        <p>Venceu em casa: ${pct(casa.vitoriasEmCasa)}%</p>
+        <p>Venceu fora de casa: ${pct(casa.vitoriasFora)}%</p>
+        <p>Não venceu: ${pct(casa.naoVenceu)}%</p>
+        <p>+1,5 gols: ${pct(casa.mais1_5)}%</p>
+        <p>+2,5 gols: ${pct(casa.mais2_5)}%</p>
+        <p>-2,5 gols: ${pct(casa.menos2_5)}%</p>
+        <p>-2,5 gols fora: ${pct(casa.menos2_5Fora)}%</p>
+        <p>Marcou primeiro: ${pct(casa.marcouPrimeiro)}%</p>
+        <p>Venceu 1º tempo: ${pct(casa.venceuPrimeiroTempo)}%</p>
+        <p>Ambos marcaram: ${pct(casa.ambosMarcam)}%</p>
+
+        <h4>${visitante.nome} (Time Visitante)</h4>
+        <p>Vitórias: ${pct(visitante.vitorias)}%</p>
+        <p>Venceu em casa: ${pct(visitante.vitoriasEmCasa)}%</p>
+        <p>Venceu fora de casa: ${pct(visitante.vitoriasFora)}%</p>
+        <p>Não venceu: ${pct(visitante.naoVenceu)}%</p>
+        <p>+1,5 gols: ${pct(visitante.mais1_5)}%</p>
+        <p>+2,5 gols: ${pct(visitante.mais2_5)}%</p>
+        <p>-2,5 gols: ${pct(visitante.menos2_5)}%</p>
+        <p>-2,5 gols fora: ${pct(visitante.menos2_5Fora)}%</p>
+        <p>Marcou primeiro: ${pct(visitante.marcouPrimeiro)}%</p>
+        <p>Venceu 1º tempo: ${pct(visitante.venceuPrimeiroTempo)}%</p>
+        <p>Ambos marcaram: ${pct(visitante.ambosMarcam)}%</p>
+    `;
 }
 
-document.getElementById('limpar').addEventListener('click', resetCampos);
+// -------------------- Event Listeners --------------------
+document.getElementById('preencherExemplo').addEventListener('click', preencherExemplo);
+document.getElementById('limpar').addEventListener('click', limparCampos);
+document.getElementById('gerar').addEventListener('click', gerarSugestoes);
 
-// Função para gerar análise
-document.getElementById('gerar').addEventListener('click', () => {
-    const dados = {};
-    document.querySelectorAll('input').forEach(input => {
-        dados[input.id] = input.value.trim() || (input.id.includes("nome") ? "" : "0/0");
-    });
 
-    // Converter x/y para %
-    const perc = {};
-    for (let key in dados) perc[key] = parseXY(dados[key]);
 
-    // ---------- Score Vencedor ----------
-    const scoreCasa =
-        perc.vitoriasCasa +
-        perc.vitoriasCasaEmCasa +
-        perc.vitoriasCasaFora +
-        perc.marcouPrimeiroCasa +
-        perc.vencePrimeiroTempoCasa +
-        perc.ganhouEmpatouCasaCD;
-
-    const scoreFora =
-        perc.vitoriasFora +
-        perc.vitoriasForaEmCasa +
-        perc.vitoriasForaFora +
-        perc.marcouPrimeiroFora +
-        perc.vencePrimeiroTempoFora +
-        perc.ganhouEmpatouForaCD;
-
-    let vencedor = "Empate provável";
-    if (scoreCasa > scoreFora) vencedor = `${dados.nomeCasa} provável vencedor`;
-    if (scoreFora > scoreCasa) vencedor = `${dados.nomeFora} provável vencedor`;
-
-    // ---------- Análise Gols ----------
-    const mediaMaisGols = (
-        perc.maisGolsCasa +
-        perc.maisGolsFora +
-        perc.maisGolsCasaCD +
-        perc.maisGolsForaCD
-    ) / 4;
-
-    const mediaMenosGols = (
-        perc.menosGolsCasa +
-        perc.menosGolsFora +
-        perc.menosGolsCasaCD +
-        perc.menosGolsForaCD
-    ) / 4;
-
-    const over25 = mediaMaisGols >= mediaMenosGols ? "Provável +2,5 gols" : "Provável -2,5 gols";
-
-    // ---------- Análise Ambos Marcam ----------
-    const mediaBTTS = (
-        perc.ambosMarcamCasa +
-        perc.ambosMarcamFora +
-        perc.ambosMarcamCasaCD +
-        perc.ambosMarcamForaCD
-    ) / 4;
-
-    const ambos = mediaBTTS >= 50 ? "Provável Ambos Marcam (BTTS)" : "Provável Nem Ambos Marcam";
-
-    // ---------- Montar Resultado ----------
-    let resultadoHTML = `
-        <h3>Análise Geral</h3>
-        <p><strong>Vencedor:</strong> ${vencedor}</p>
-        <p><strong>Gols:</strong> ${over25}</p>
-        <p><strong>Ambos Marcam:</strong> ${ambos}</p>
-        <hr>
-
-        <h4>${dados.nomeCasa} (Time da Casa)</h4>
-        <p>Vitórias: ${perc.vitoriasCasa.toFixed(1)}%</p>
-        <p>Venceu em casa: ${perc.vitoriasCasaEmCasa.toFixed(1)}%</p>
-        <p>Venceu fora de casa: ${perc.vitoriasCasaFora.toFixed(1)}%</p>
-        <p>Não venceu: ${perc.naoVenceuCasa.toFixed(1)}%</p>
-        <p>+2,5 gols: ${perc.maisGolsCasa.toFixed(1)}%</p>
-        <p>-2,5 gols: ${perc.menosGolsCasa.toFixed(1)}%</p>
-        <p>-2,5 gols fora de casa: ${perc.menosGolsCasaFora.toFixed(1)}%</p>
-        <p>Marcou primeiro: ${perc.marcouPrimeiroCasa.toFixed(1)}%</p>
-        <p>Venceu 1º tempo: ${perc.vencePrimeiroTempoCasa.toFixed(1)}%</p>
-        <p>Ambos marcaram: ${perc.ambosMarcamCasa.toFixed(1)}%</p>
-
-        <h4>${dados.nomeFora} (Time Visitante)</h4>
-        <p>Vitórias: ${perc.vitoriasFora.toFixed(1)}%</p>
-        <p>Venceu em casa: ${perc.vitoriasForaEmCasa.toFixed(1)}%</p>
-        <p>Venceu fora de casa: ${perc.vitoriasForaFora.toFixed(1)}%</p>
-        <p>Não venceu: ${perc.naoVenceuFora.toFixed(1)}%</p>
-        <p>+2,5 gols: ${perc.maisGolsFora.toFixed(1)}%</p>
-        <p>-2,5 gols: ${perc.menosGolsFora.toFixed(1)}%</p>
-        <p>-2,5 gols fora de casa: ${perc.menosGolsForaFora.toFixed(1)}%</p>
-        <p>Marcou primeiro: ${perc.marcouPrimeiroFora.toFixed(1)}%</p>
-        <p>Venceu 1º tempo: ${perc.vencePrimeiroTempoFora.toFixed(1)}%</p>
-        <p>Ambos marcaram: ${perc.ambosMarcamFora.toFixed(1)}%</p>
-
-        <h4>Confronto Direto</h4>
-        <p>Vitórias ${dados.nomeCasa}: ${perc.vitoriasCasaCD.toFixed(1)}%</p>
-        <p>Vitórias ${dados.nomeFora}: ${perc.vitoriasForaCD.toFixed(1)}%</p>
-        <p>Empates: ${perc.empatesCD.toFixed(1)}%</p>
-
-        <h5>${dados.nomeCasa} (Confronto Direto)</h5>
-        <p>Ganhou ou empatou: ${perc.ganhouEmpatouCasaCD.toFixed(1)}%</p>
-        <p>+2,5 gols: ${perc.maisGolsCasaCD.toFixed(1)}%</p>
-        <p>-2,5 gols: ${perc.menosGolsCasaCD.toFixed(1)}%</p>
-        <p>Marcou primeiro: ${perc.marcouPrimeiroCasaCD.toFixed(1)}%</p>
-        <p>Venceu 1º tempo: ${perc.vencePrimeiroTempoCasaCD.toFixed(1)}%</p>
-        <p>Ambos marcaram: ${perc.ambosMarcamCasaCD.toFixed(1)}%</p>
-
-        <h5>${dados.nomeFora} (Confronto Direto)</h5>
-        <p>Ganhou ou empatou: ${perc.ganhouEmpatouForaCD.toFixed(1)}%</p>
-        <p>+2,5 gols: ${perc.maisGolsForaCD.toFixed(1)}%</p>
-        <p>-2,5 gols: ${perc.menosGolsForaCD.toFixed(1)}%</p>
-        <p>Marcou primeiro: ${perc.marcouPrimeiroForaCD.toFixed(1)}%</p>
-        <p>Venceu 1º tempo: ${perc.vencePrimeiroTempoForaCD.toFixed(1)}%</p>
-        <p>Ambos marcaram: ${perc.ambosMarcamForaCD.toFixed(1)}%</p>
-    `;
-
-    document.getElementById('resultado').innerHTML = resultadoHTML;
-});
 
 
 
