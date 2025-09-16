@@ -74,7 +74,6 @@ function gerarSugestoes() {
     const resultado = document.getElementById('resultado');
     resultado.innerHTML = '';
 
-    // Captura valores
     const casa = {
         nome: document.getElementById('nomeCasa').value,
         vitorias: calcPercent(document.getElementById('vitoriasCasa').value),
@@ -105,35 +104,12 @@ function gerarSugestoes() {
         ambosMarcam: calcPercent(document.getElementById('ambosMarcamFora').value)
     };
 
-    const confronto = {
-        vitoriasCasa: calcPercent(document.getElementById('vitoriasCasaCD').value),
-        vitoriasFora: calcPercent(document.getElementById('vitoriasForaCD').value),
-        empates: calcPercent(document.getElementById('empatesCD').value),
-        ganhouEmpatouCasa: calcPercent(document.getElementById('ganhouEmpatouCasaCD').value),
-        mais2_5Casa: calcPercent(document.getElementById('maisGolsCasaCD').value),
-        menos2_5Casa: calcPercent(document.getElementById('menosGolsCasaCD').value),
-        marcouPrimeiroCasa: calcPercent(document.getElementById('marcouPrimeiroCasaCD').value),
-        venceuPrimeiroTempoCasa: calcPercent(document.getElementById('vencePrimeiroTempoCasaCD').value),
-        ambosMarcamCasa: calcPercent(document.getElementById('ambosMarcamCasaCD').value),
-        ganhouEmpatouFora: calcPercent(document.getElementById('ganhouEmpatouForaCD').value),
-        mais2_5Fora: calcPercent(document.getElementById('maisGolsForaCD').value),
-        menos2_5Fora: calcPercent(document.getElementById('menosGolsForaCD').value),
-        marcouPrimeiroFora: calcPercent(document.getElementById('marcouPrimeiroForaCD').value),
-        venceuPrimeiroTempoFora: calcPercent(document.getElementById('vencePrimeiroTempoForaCD').value),
-        ambosMarcamFora: calcPercent(document.getElementById('ambosMarcamForaCD').value)
-    };
-
     // -------------------- Lógica de +1,5 e +2,5 --------------------
-    let golsMais1_5 = casa.mais1_5 > 0 || visitante.mais1_5 > 0;
-    let golsMais2_5 = casa.mais2_5 > 0 || visitante.mais2_5 > 0;
     let resultadoGols = '';
-
-    if (golsMais1_5 && golsMais2_5) {
-        resultadoGols = 'Anulado (campo +1,5 ou +2,5 preenchido)';
-    } else if (golsMais1_5) {
-        resultadoGols = 'Provável +1,5 gols';
-    } else if (golsMais2_5) {
+    if (casa.mais2_5 > 0 || visitante.mais2_5 > 0) {
         resultadoGols = 'Provável +2,5 gols';
+    } else if (casa.mais1_5 > 0 || visitante.mais1_5 > 0) {
+        resultadoGols = 'Provável +1,5 gols';
     } else {
         resultadoGols = 'Sem análise de gols';
     }
@@ -142,7 +118,8 @@ function gerarSugestoes() {
     let vencedor = casa.vitorias > visitante.vitorias ? casa.nome : visitante.nome;
 
     // -------------------- Ambos marcam --------------------
-    let ambosMarcam = (casa.ambosMarcam + visitante.ambosMarcam) / 2 > 50 ? 'Provável Ambos Marcam (BTTS)' : 'Provável Não Ambos Marcam';
+    let mediaAmbosMarcam = (casa.ambosMarcam + visitante.ambosMarcam) / 2;
+    let ambosMarcam = mediaAmbosMarcam >= 50 ? 'Provável Ambos Marcam (BTTS)' : 'Provável Não Ambos Marcam';
 
     // -------------------- Exibir resultado --------------------
     resultado.innerHTML = `
