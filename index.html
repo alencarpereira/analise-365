@@ -2,191 +2,137 @@
 <html lang="pt-BR">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Calculadora de Odds e Sugestões</title>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerador de Sugestões de Aposta</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-    <main class="container">
-        <h1>Calculadora de Odds e Sugestões</h1>
 
-        <!-- NOVO: Seletor de jogo -->
-        <select id="seletorJogo" onchange="onJogoChange()">
-            <option value="">Selecione um jogo</option>
-            <option value="jogo1">Time A x Time B (Jogo 1)</option>
-            <option value="jogo2">Time C x Time D (Jogo 2)</option>
-        </select>
+    <div class="card">
+        <h2>Gerador de Sugestões de Aposta</h2>
 
-        <section>
-            <h2>Valor da Banca</h2>
-            <label for="valorBanca">Informe sua banca (R$):</label>
-            <input type="number" id="valorBanca" step="0.01" min="1" />
-        </section>
+        <!-- Time da Casa -->
+        <div class="casa">
+            <h3>Time da Casa</h3>
 
-        <section>
-            <h2>Resultado 1X2 + Empate Anula</h2>
+            <label for="nomeCasa">Nome do Time da Casa</label>
+            <input type="text" id="nomeCasa" placeholder="Ex: Juventus">
 
-            <div class="ultimos-jogos-container">
-                <div class="time-section">
-                    <h3>Time A</h3>
-                    <div class="linha-gols">
-                        <div class="label-gols">Marcados:</div>
-                        <div class="input-group">
-                            <input type="number" id="timeA_j1_marcados" min="0" max="99" step="1" placeholder="J1" />
-                            <input type="number" id="timeA_j2_marcados" min="0" max="99" step="1" placeholder="J2" />
-                            <input type="number" id="timeA_j3_marcados" min="0" max="99" step="1" placeholder="J3" />
-                            <input type="number" id="timeA_j4_marcados" min="0" max="99" step="1" placeholder="J4" />
-                            <input type="number" id="timeA_j5_marcados" min="0" max="99" step="1" placeholder="J5" />
-                        </div>
-                    </div>
-                    <div class="linha-gols">
-                        <div class="label-gols">Sofridos:</div>
-                        <div class="input-group">
-                            <input type="number" id="timeA_j1_sofridos" min="0" max="99" step="1" placeholder="J1" />
-                            <input type="number" id="timeA_j2_sofridos" min="0" max="99" step="1" placeholder="J2" />
-                            <input type="number" id="timeA_j3_sofridos" min="0" max="99" step="1" placeholder="J3" />
-                            <input type="number" id="timeA_j4_sofridos" min="0" max="99" step="1" placeholder="J4" />
-                            <input type="number" id="timeA_j5_sofridos" min="0" max="99" step="1" placeholder="J5" />
-                        </div>
-                    </div>
-                </div>
+            <label for="vitoriasCasa">Vitórias (últimos jogos, formato x/y)</label>
+            <input type="text" id="vitoriasCasa" placeholder="Ex: 3/5">
 
-                <div class="time-section">
-                    <h3>Time B</h3>
-                    <div class="linha-gols">
-                        <div class="label-gols">Marcados:</div>
-                        <div class="input-group">
-                            <input type="number" id="timeB_j1_marcados" min="0" max="99" step="1" placeholder="J1" />
-                            <input type="number" id="timeB_j2_marcados" min="0" max="99" step="1" placeholder="J2" />
-                            <input type="number" id="timeB_j3_marcados" min="0" max="99" step="1" placeholder="J3" />
-                            <input type="number" id="timeB_j4_marcados" min="0" max="99" step="1" placeholder="J4" />
-                            <input type="number" id="timeB_j5_marcados" min="0" max="99" step="1" placeholder="J5" />
-                        </div>
-                    </div>
-                    <div class="linha-gols">
-                        <div class="label-gols">Sofridos:</div>
-                        <div class="input-group">
-                            <input type="number" id="timeB_j1_sofridos" min="0" max="99" step="1" placeholder="J1" />
-                            <input type="number" id="timeB_j2_sofridos" min="0" max="99" step="1" placeholder="J2" />
-                            <input type="number" id="timeB_j3_sofridos" min="0" max="99" step="1" placeholder="J3" />
-                            <input type="number" id="timeB_j4_sofridos" min="0" max="99" step="1" placeholder="J4" />
-                            <input type="number" id="timeB_j5_sofridos" min="0" max="99" step="1" placeholder="J5" />
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <label for="oddVitoriaA">Vitória Time A:</label>
-            <input type="number" id="oddVitoriaA" step="0.01" min="1" />
+            <label for="vitoriasCasaFora">Venceu fora de casa (últimos jogos, formato x/y)</label>
+            <input type="text" id="vitoriasCasaFora" placeholder="Ex: 2/5">
 
-            <label for="oddEmpate">Empate:</label>
-            <input type="number" id="oddEmpate" step="0.01" min="1" />
+            <label for="maisGolsCasa">Jogos com +2,5 gols (últimos jogos, formato x/y)</label>
+            <input type="text" id="maisGolsCasa" placeholder="Ex: 3/4">
 
-            <label for="oddEmpateAnulaA">Empate Anula - Time A:</label>
-            <input type="number" id="oddEmpateAnulaA" step="0.01" min="1" />
+            <label for="menosGolsCasa">Jogos com -2,5 gols (últimos jogos, formato x/y)</label>
+            <input type="text" id="menosGolsCasa" placeholder="Ex: 1/4">
 
-            <label for="oddEmpateAnulaB">Empate Anula - Time B:</label>
-            <input type="number" id="oddEmpateAnulaB" step="0.01" min="1" />
+            <label for="marcouPrimeiroCasa">Marcou primeiro (últimos jogos, formato x/y)</label>
+            <input type="text" id="marcouPrimeiroCasa" placeholder="Ex: 3/4">
 
-            <label for="oddVitoriaB">Vitória Time B:</label>
-            <input type="number" id="oddVitoriaB" step="0.01" min="1" />
-        </section>
+            <label for="vencePrimeiroTempoCasa">Venceu primeiro tempo (últimos jogos, formato x/y)</label>
+            <input type="text" id="vencePrimeiroTempoCasa" placeholder="Ex: 2/4">
 
-        <section>
-            <h2>Dupla Hipótese (Odds)</h2>
-            <label for="oddDuplaAEmpate">Time A ou Empate:</label>
-            <input type="number" id="oddDuplaAEmpate" step="0.01" min="1" placeholder="Ex: 1.20" />
-
-            <label for="oddDuplaEmpateB">Empate ou Time B:</label>
-            <input type="number" id="oddDuplaEmpateB" step="0.01" min="1" placeholder="Ex: 1.30" />
-
-            <label for="oddDuplaAB">Time A ou Time B:</label>
-            <input type="number" id="oddDuplaAB" step="0.01" min="1" placeholder="Ex: 1.50" />
-        </section>
-
-        <section>
-            <h2>Mercado de Gols</h2>
-            <label for="oddOver15">Over 1.5 Gols:</label>
-            <input type="number" id="oddOver15" step="0.01" min="1" />
-
-            <label for="oddUnder25">Under 2.5 Gols:</label>
-            <input type="number" id="oddUnder25" step="0.01" min="1" />
-        </section>
-
-        <section>
-            <h2>Ambos Marcam</h2>
-            <label for="oddAmbosSim">Ambos Marcam - Sim:</label>
-            <input type="number" id="oddAmbosSim" step="0.01" min="1" />
-
-            <label for="oddAmbosNao">Ambos Marcam - Não:</label>
-            <input type="number" id="oddAmbosNao" step="0.01" min="1" />
-        </section>
-
-        <section>
-            <h2>Escanteios</h2>
-            <label for="escanteiosAlvo">Mais de quantos escanteios?</label>
-            <input type="number" id="escanteiosAlvo" min="1" step="1" placeholder="Ex: 5" />
-
-            <label for="oddEscanteiosMais">Odd - Mais de X escanteios:</label>
-            <input type="number" id="oddEscanteiosMais" step="0.01" min="1" />
-
-            <label for="oddEscanteiosExato">Odd - Exatamente X escanteios:</label>
-            <input type="number" id="oddEscanteiosExato" step="0.01" min="1" />
-
-            <label for="oddEscanteiosMenos">Odd - Menos de X escanteios:</label>
-            <input type="number" id="oddEscanteiosMenos" step="0.01" min="1" />
-        </section>
-
-        <section>
-            <h2>Cartões</h2>
-            <label for="oddCartoesSim">Cartões para ambos os times - Sim:</label>
-            <input type="number" id="oddCartoesSim" step="0.01" min="1" />
-
-            <label for="oddCartoesNao">Cartões para ambos os times - Não:</label>
-            <input type="number" id="oddCartoesNao" step="0.01" min="1" />
-        </section>
-
-        <!-- Dados ocultos para médias -->
-        <input type="hidden" id="mediaGolsMarcadosTimeA" />
-        <input type="hidden" id="mediaGolsSofridosTimeA" />
-        <input type="hidden" id="mediaGolsMarcadosTimeB" />
-        <input type="hidden" id="mediaGolsSofridosTimeB" />
-
-        <h3>Médias dos Times</h3>
-        <div id="exibicaoMedias" class="box-medias">
-            <p><strong>Time A:</strong></p>
-            <p>Gols Marcados: <span id="exibeGolsMarcadosA">-</span></p>
-            <p>Gols Sofridos: <span id="exibeGolsSofridosA">-</span></p>
-
-            <p><strong>Time B:</strong></p>
-            <p>Gols Marcados: <span id="exibeGolsMarcadosB">-</span></p>
-            <p>Gols Sofridos: <span id="exibeGolsSofridosB">-</span></p>
+            <label for="ambosMarcamCasa">Ambos marcaram (últimos jogos, formato x/y)</label>
+            <input type="text" id="ambosMarcamCasa" placeholder="Ex: 3/4">
         </div>
 
-        <div class="botoes">
-            <button type="button" onclick="atualizarMedias(); gerarSugestoes();">Gerar Sugestões</button>
-            <button type="button" onclick="limparCampos()" class="limpar">Limpar</button>
-            <button type="button" onclick="preencherAutomatico()">Preencher Automático</button>
+        <!-- Time Visitante -->
+        <div class="visitante">
+            <h3>Time Visitante</h3>
+
+            <label for="nomeFora">Nome do Time Visitante</label>
+            <input type="text" id="nomeFora" placeholder="Ex: Borussia">
+
+            <label for="vitoriasFora">Vitórias (últimos jogos, formato x/y)</label>
+            <input type="text" id="vitoriasFora" placeholder="Ex: 2/5">
+
+            <label for="vitoriasForaFora">Venceu fora de casa (últimos jogos, formato x/y)</label>
+            <input type="text" id="vitoriasForaFora" placeholder="Ex: 1/5">
+
+            <label for="maisGolsFora">Jogos com +2,5 gols (últimos jogos, formato x/y)</label>
+            <input type="text" id="maisGolsFora" placeholder="Ex: 2/4">
+
+            <label for="menosGolsFora">Jogos com -2,5 gols (últimos jogos, formato x/y)</label>
+            <input type="text" id="menosGolsFora" placeholder="Ex: 1/4">
+
+            <label for="marcouPrimeiroFora">Marcou primeiro (últimos jogos, formato x/y)</label>
+            <input type="text" id="marcouPrimeiroFora" placeholder="Ex: 1/4">
+
+            <label for="vencePrimeiroTempoFora">Venceu primeiro tempo (últimos jogos, formato x/y)</label>
+            <input type="text" id="vencePrimeiroTempoFora" placeholder="Ex: 1/4">
+
+            <label for="ambosMarcamFora">Ambos marcaram (últimos jogos, formato x/y)</label>
+            <input type="text" id="ambosMarcamFora" placeholder="Ex: 2/4">
         </div>
-        <div id="resultado"></div>
-        <div id="sugestaoForte"></div>
-        <div id="sugestaoSimples" class="caixa-sugestao"></div>
 
+        <!-- Confronto Direto -->
+        <div class="confronto">
+            <h3>Confronto Direto</h3>
 
-        <button onclick="alternarDebug()">🔍 Alternar Modo Debug</button>
-        <div id="debug"
-            style="display:none; white-space:pre-line; background:#f0f0f0; border:1px solid #999; padding:10px; margin-top:10px;">
+            <label for="vitoriasCasaCD">Vitórias do Time da Casa (últimos confrontos, formato x/y)</label>
+            <input type="text" id="vitoriasCasaCD" placeholder="Ex: 3/4">
+
+            <label for="vitoriasForaCD">Vitórias do Time Visitante (últimos confrontos, formato x/y)</label>
+            <input type="text" id="vitoriasForaCD" placeholder="Ex: 1/4">
+
+            <label for="empatesCD">Empates (últimos confrontos, formato x/y)</label>
+            <input type="text" id="empatesCD" placeholder="Ex: 0/4">
+
+            <h4>Time da Casa (Confronto Direto)</h4>
+
+            <label for="maisGolsCasaCD">Jogos com +2,5 gols (últimos confrontos, formato x/y)</label>
+            <input type="text" id="maisGolsCasaCD" placeholder="Ex: 2/4">
+
+            <label for="menosGolsCasaCD">Jogos com -2,5 gols (últimos confrontos, formato x/y)</label>
+            <input type="text" id="menosGolsCasaCD" placeholder="Ex: 1/4">
+
+            <label for="marcouPrimeiroCasaCD">Marcou primeiro (últimos confrontos, formato x/y)</label>
+            <input type="text" id="marcouPrimeiroCasaCD" placeholder="Ex: 1/4">
+
+            <label for="vencePrimeiroTempoCasaCD">Venceu primeiro tempo (últimos confrontos, formato x/y)</label>
+            <input type="text" id="vencePrimeiroTempoCasaCD" placeholder="Ex: 1/4">
+
+            <label for="ambosMarcamCasaCD">Ambos marcaram (últimos confrontos, formato x/y)</label>
+            <input type="text" id="ambosMarcamCasaCD" placeholder="Ex: 2/4">
+
+            <h4>Time Visitante (Confronto Direto)</h4>
+
+            <label for="maisGolsForaCD">Jogos com +2,5 gols (últimos confrontos, formato x/y)</label>
+            <input type="text" id="maisGolsForaCD" placeholder="Ex: 2/4">
+
+            <label for="menosGolsForaCD">Jogos com -2,5 gols (últimos confrontos, formato x/y)</label>
+            <input type="text" id="menosGolsForaCD" placeholder="Ex: 1/4">
+
+            <label for="marcouPrimeiroForaCD">Marcou primeiro (últimos confrontos, formato x/y)</label>
+            <input type="text" id="marcouPrimeiroForaCD" placeholder="Ex: 1/4">
+
+            <label for="vencePrimeiroTempoForaCD">Venceu primeiro tempo (últimos confrontos, formato x/y)</label>
+            <input type="text" id="vencePrimeiroTempoForaCD" placeholder="Ex: 1/4">
+
+            <label for="ambosMarcamForaCD">Ambos marcaram (últimos confrontos, formato x/y)</label>
+            <input type="text" id="ambosMarcamForaCD" placeholder="Ex: 2/4">
         </div>
 
+        <!-- Resultado da análise -->
+        <div id="resultado" class="resultado"></div>
 
-    </main>
+        <button id="preencherExemplo" class="btn exemplo">Preencher Exemplo</button>
+        <br>
+        <br>
+        <button id="gerar" class="btn gerar">Gerar Sugestões</button>
+        <br>
+        <br>
+        <button id="limpar" class="btn limpar">Limpar Campos</button>
+
+    </div>
 
     <script src="script.js"></script>
 </body>
 
 </html>
-
-
-
-<!-- apagar ate aqui -->
