@@ -23,14 +23,23 @@
             <label for="vitoriasCasa">Vitórias (últimos jogos, formato x/y)</label>
             <input type="text" id="vitoriasCasa" placeholder="Ex: 3/5">
 
+            <label for="vitoriasCasaEmCasa">Venceu em casa (últimos jogos, formato x/y)</label>
+            <input type="text" id="vitoriasCasaEmCasa" placeholder="Ex: 3/5">
+
             <label for="vitoriasCasaFora">Venceu fora de casa (últimos jogos, formato x/y)</label>
             <input type="text" id="vitoriasCasaFora" placeholder="Ex: 2/5">
+
+            <label for="naoVenceuCasa">Não venceu (últimos jogos, formato x/y)</label>
+            <input type="text" id="naoVenceuCasa" placeholder="Ex: 2/5">
 
             <label for="maisGolsCasa">Jogos com +2,5 gols (últimos jogos, formato x/y)</label>
             <input type="text" id="maisGolsCasa" placeholder="Ex: 3/4">
 
             <label for="menosGolsCasa">Jogos com -2,5 gols (últimos jogos, formato x/y)</label>
             <input type="text" id="menosGolsCasa" placeholder="Ex: 1/4">
+
+            <label for="menosGolsCasaFora">Jogos com -2,5 gols fora de casa (últimos jogos, formato x/y)</label>
+            <input type="text" id="menosGolsCasaFora" placeholder="Ex: 1/4">
 
             <label for="marcouPrimeiroCasa">Marcou primeiro (últimos jogos, formato x/y)</label>
             <input type="text" id="marcouPrimeiroCasa" placeholder="Ex: 3/4">
@@ -52,14 +61,23 @@
             <label for="vitoriasFora">Vitórias (últimos jogos, formato x/y)</label>
             <input type="text" id="vitoriasFora" placeholder="Ex: 2/5">
 
+            <label for="vitoriasForaEmCasa">Venceu em casa (últimos jogos, formato x/y)</label>
+            <input type="text" id="vitoriasForaEmCasa" placeholder="Ex: 2/5">
+
             <label for="vitoriasForaFora">Venceu fora de casa (últimos jogos, formato x/y)</label>
             <input type="text" id="vitoriasForaFora" placeholder="Ex: 1/5">
+
+            <label for="naoVenceuFora">Não venceu (últimos jogos, formato x/y)</label>
+            <input type="text" id="naoVenceuFora" placeholder="Ex: 1/5">
 
             <label for="maisGolsFora">Jogos com +2,5 gols (últimos jogos, formato x/y)</label>
             <input type="text" id="maisGolsFora" placeholder="Ex: 2/4">
 
             <label for="menosGolsFora">Jogos com -2,5 gols (últimos jogos, formato x/y)</label>
             <input type="text" id="menosGolsFora" placeholder="Ex: 1/4">
+
+            <label for="menosGolsForaFora">Jogos com -2,5 gols fora de casa (últimos jogos, formato x/y)</label>
+            <input type="text" id="menosGolsForaFora" placeholder="Ex: 1/4">
 
             <label for="marcouPrimeiroFora">Marcou primeiro (últimos jogos, formato x/y)</label>
             <input type="text" id="marcouPrimeiroFora" placeholder="Ex: 1/4">
@@ -86,6 +104,9 @@
 
             <h4>Time da Casa (Confronto Direto)</h4>
 
+            <label for="ganhouEmpatouCasaCD">Ganhou ou empatou (últimos confrontos, formato x/y)</label>
+            <input type="text" id="ganhouEmpatouCasaCD" placeholder="Ex: 2/4">
+
             <label for="maisGolsCasaCD">Jogos com +2,5 gols (últimos confrontos, formato x/y)</label>
             <input type="text" id="maisGolsCasaCD" placeholder="Ex: 2/4">
 
@@ -102,6 +123,9 @@
             <input type="text" id="ambosMarcamCasaCD" placeholder="Ex: 2/4">
 
             <h4>Time Visitante (Confronto Direto)</h4>
+
+            <label for="ganhouEmpatouForaCD">Ganhou ou empatou (últimos confrontos, formato x/y)</label>
+            <input type="text" id="ganhouEmpatouForaCD" placeholder="Ex: 2/4">
 
             <label for="maisGolsForaCD">Jogos com +2,5 gols (últimos confrontos, formato x/y)</label>
             <input type="text" id="maisGolsForaCD" placeholder="Ex: 2/4">
@@ -123,11 +147,9 @@
         <div id="resultado" class="resultado"></div>
 
         <button id="preencherExemplo" class="btn exemplo">Preencher Exemplo</button>
-        <br>
-        <br>
+        <br><br>
         <button id="gerar" class="btn gerar">Gerar Sugestões</button>
-        <br>
-        <br>
+        <br><br>
         <button id="limpar" class="btn limpar">Limpar Campos</button>
 
     </div>
